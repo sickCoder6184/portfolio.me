@@ -14,7 +14,7 @@ import {
   Slide,
 } from "@mui/material";
 import { Menu, DarkMode, LightMode } from "@mui/icons-material";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Navbar = ({ darkMode, setDarkMode }) => {
@@ -24,7 +24,6 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const location = useLocation();
 
   const menuItems = [
     { text: "Home", path: "/" },
@@ -52,7 +51,11 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
   return (
     <Slide in={showAppBar}>
-      <AppBar position="sticky" color="default" sx={{ background: darkMode ? "#121212" : "#fff" }}>
+      <AppBar
+        position="sticky"
+        color="default"
+        sx={{ background: darkMode ? "#121212" : "#fff" }}
+      >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           {/* Logo to the left */}
           <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
@@ -65,7 +68,6 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 transition: "color 0.3s",
                 "&:hover": {
                   color: darkMode ? "white" : "#a020f0",
-                  color : "#a020f0",
                 },
               }}
             >
@@ -81,10 +83,18 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
             {isMobile ? (
               <>
-                <IconButton color="inherit" edge="start" onClick={() => setMobileOpen(!mobileOpen)}>
+                <IconButton
+                  color="inherit"
+                  edge="start"
+                  onClick={() => setMobileOpen(!mobileOpen)}
+                >
                   <Menu />
                 </IconButton>
-                <Drawer anchor="right" open={mobileOpen} onClose={() => setMobileOpen(false)}>
+                <Drawer
+                  anchor="right"
+                  open={mobileOpen}
+                  onClose={() => setMobileOpen(false)}
+                >
                   <List sx={{ width: 250 }}>
                     {menuItems.map((item) => (
                       <ListItem
